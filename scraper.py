@@ -4,6 +4,8 @@ from selenium import webdriver
 import datetime
 import os
 import time
+import requests
+import json
 
 
 
@@ -13,28 +15,36 @@ def get_stock_calls(stock, min_year):
         os.mkdir(path)
 
     options = webdriver.ChromeOptions()
-    options.add_argument('headless')
+    #options.add_argument('headless')
     driver = webdriver.Chrome(chrome_options=options)
-    url = 'http://seekingalpha.com/symbol/'+stock+'/earnings/transcripts'
-    driver.get(url)
+    page = 0
 
-    body_el = driver.find_element_by_tag_name("body")
+    done = False
+    url = 'http://seekingalpha.com/symbol/'+stock+'/earnings/more_transcripts?page='
+    html = '<html>'
+    while not done:
+        driver.get(url+str(page))
+        el = driver.find_element_by_xpath("//*")
+        page_html = el.text
+        print(page_html)
+        response = json.loads(page_html)
+        if len(response['html']) < 2:
+            done = True
+        html = html + response['html'] 
+        page += 1
+    html += '</html>'
 
-    no_of_pagedowns = 50
-    # load everything in the infinite scroll
-    while no_of_pagedowns:
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        no_of_pagedowns-=1
-
-    elem = driver.find_element_by_xpath("//*")
-    html = elem.get_attribute("outerHTML")
-    print(html)
     soup = BeautifulSoup(html, 'html.parser')
     links = soup.find_all('a')
-    print(links)
-    print(len(links))
 
+    hrefs = set()
+    deduped_links = []
     for link in links:
+        if link.get('href') not in hrefs:
+            deduped_links.append(link)
+            hrefs.add(link.get('href'))
+
+    for link in deduped_links:
         href = link.get('href')
         try:
             if href and 'transcript' in href and 'earnings' in href:
@@ -55,26 +65,31 @@ def get_stock_calls(stock, min_year):
                         datetime_object = datetime.datetime.strptime(date+" "+str(cur_year), '%a, %b. %d %Y')
 
                 year = datetime_object.year
-                if year >= 2015: 
-                    continue
+
                 if year <= min_year:
                     return
                 driver.get(transcript_url)        
                 el = driver.find_element_by_xpath("//*")
                 page_html = el.get_attribute("outerHTML")
-                transcript_soup = BeautifulSoup(page_html, "html.parser")
+                content = ''
                 try:
-                    text = transcript_soup.find(id="a-cont").text
-                    cleaned_text = text.split("Copyright policy:")[0]
-                    file_name = datetime_object.strftime("%m_%d_%Y.txt")
-                    f = open(path+"/"+file_name, 'w')
-                    f.write(cleaned_text)
-                    f.close()
+                    content = extract_transcript(page_html)
+                
                 except Exception as e:
                     print("Transcript Parsing Error")
-                    print(transcript_soup.text)
-                    continue
+                    # give us time to manually do the captcha and then try again
+                    time.sleep(20)
+                    try: 
+                        content = extract_transcript(page_html)
+                    except:
+                        # if it fails twice then just skip it, probably mal-formed for some reason
+                        continue
+                file_name = datetime_object.strftime("%m_%d_%Y.txt")
+                f = open(path+"/"+file_name, 'w')
+                f.write(content)
+                f.close()
                 print(href + " done")
+                time.sleep(5)
 
 
         except TypeError as e:
@@ -82,10 +97,14 @@ def get_stock_calls(stock, min_year):
             print(e)
             continue
                     
-
+def extract_transcript(page_html):
+    transcript_soup = BeautifulSoup(page_html, "html.parser")
+    text = transcript_soup.find(id="a-cont").text
+    cleaned_text = text.split("Copyright policy:")[0]
+    return cleaned_text
 
 if __name__ == "__main__":
-    stocks=['GOOG']#, 'BA', 'CAT', 'KO', 'BUD', 'PEP']
+    stocks=['KO']#, 'BA', 'CAT', 'KO', 'BUD', 'PEP']
     min_year = 2012 
 
 
