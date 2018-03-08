@@ -104,7 +104,7 @@ def extract_transcript(page_html):
     return cleaned_text
 
 if __name__ == "__main__":
-    stocks=['KO']#, 'BA', 'CAT', 'KO', 'BUD', 'PEP']
+    stocks=['CA']#, 'BA', 'CAT', 'KO', 'BUD', 'PEP']
     min_year = 2012 
 
 
