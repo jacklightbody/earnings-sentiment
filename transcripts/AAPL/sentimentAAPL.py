@@ -3,8 +3,8 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 def pullNames(lineList):
     sentimentDict = {}
-    sentimentDict["Operator"] = 0.0
     executiveDict = {}
+    sentimentDict["Operator"] = 0.0
     for i in range(50):
         if lineList[i] == "Executives":
             j = i + 1
@@ -51,7 +51,7 @@ def analyzeAAPL():
     with open(r'.\transcripts\AAPL\01_26_2016.txt',encoding='utf-8') as f:
         df = f.read().splitlines() 
     execDict, sentDict = pullNames(df)
-    execDict = sentimentCalc(df,execDict,sentDict)
+    execDict = sentimentCalc(df,execDict,sentDict )
     fullDict['01_26_2016'] = execDict
 
     with open(r'.\transcripts\AAPL\01_27_2014.txt',encoding='utf-8') as f1:
@@ -163,6 +163,3 @@ def analyzeAAPL():
     fullDict['11_02_2017'] = execDict18
     
     return fullDict
-
-AAPL = analyzeAAPL()
-print(AAPL)

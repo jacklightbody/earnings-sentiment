@@ -74,6 +74,4 @@ def analyzeBA():
     
     return fullDict
 
-BA = analyzeBA()
-print(BA)
-            
+BA = analyzeBA()            

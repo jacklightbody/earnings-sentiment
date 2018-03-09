@@ -20,4 +20,4 @@ def sentiment():
     
     return sentDict
 
-sentiment()
+print(sentiment())

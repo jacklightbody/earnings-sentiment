@@ -141,4 +141,3 @@ def analyzePEP():
     return fullDict
 
 PEP = analyzePEP()
-print(PEP)

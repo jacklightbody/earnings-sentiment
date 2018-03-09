@@ -93,4 +93,3 @@ def analyzeCAT():
     return fullDict
 
 CAT = analyzeCAT()
-print(CAT)

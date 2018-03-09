@@ -153,4 +153,3 @@ def analyzeGOOG():
     return fullDict
 
 GOOG = analyzeGOOG()
-print(GOOG)

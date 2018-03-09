@@ -158,6 +158,4 @@ def analyzeBUD():
     
     return fullDict
 
-BUD = analyzeBUD()
-print(BUD)
-            
+BUD = analyzeBUD()        

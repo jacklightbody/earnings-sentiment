@@ -158,6 +158,4 @@ def analyzeKO():
     
     return fullDict
 
-KO = analyzeKO()
-print(KO)
-            
+KO = analyzeKO()            
