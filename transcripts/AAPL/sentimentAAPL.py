@@ -48,115 +48,115 @@ def analyzeAAPL():
     
     fullDict = {}
     
-    with open('01_26_2016.txt',encoding='utf-8') as f:
+    with open(r'.\transcripts\AAPL\01_26_2016.txt',encoding='utf-8') as f:
         df = f.read().splitlines() 
     execDict, sentDict = pullNames(df)
     execDict = sentimentCalc(df,execDict,sentDict)
     fullDict['01_26_2016'] = execDict
 
-    with open('01_27_2014.txt',encoding='utf-8') as f1:
+    with open(r'.\transcripts\AAPL\01_27_2014.txt',encoding='utf-8') as f1:
         df1 = f1.read().splitlines()
     execDict1, sentDict1 = pullNames(df1)
     execDict1 = sentimentCalc(df1,execDict1,sentDict1)
     fullDict['01_27_2014'] = execDict1
 
-    with open('01_27_2015.txt',encoding='utf-8') as f2:
+    with open(r'.\transcripts\AAPL\01_27_2015.txt',encoding='utf-8') as f2:
         df2 = f2.read().splitlines()
     execDict2, sentDict2 = pullNames(df2)
     execDict2 = sentimentCalc(df2,execDict2,sentDict2)
     fullDict['01_27_2015'] = execDict2
 
-    with open('01_31_2017.txt',encoding='utf-8') as f3:
+    with open(r'.\transcripts\AAPL\01_31_2017.txt',encoding='utf-8') as f3:
         df3 = f3.read().splitlines()
     execDict3, sentDict3 = pullNames(df3)
     execDict3 = sentimentCalc(df3,execDict3,sentDict3)
     fullDict['01_31_2017'] = execDict3
 
-    with open('02_01_2018.txt',encoding='utf-8') as f4:
+    with open(r'.\transcripts\AAPL\02_01_2018.txt',encoding='utf-8') as f4:
         df4 = f4.read().splitlines()
     execDict4, sentDict4 = pullNames(df4)
     execDict4 = sentimentCalc(df4,execDict4,sentDict4)
     fullDict['02_01_2018'] = execDict4
 
-    with open('04_23_2014.txt',encoding='utf-8') as f5:
+    with open(r'.\transcripts\AAPL\04_23_2014.txt',encoding='utf-8') as f5:
         df5 = f5.read().splitlines()
     execDict5, sentDict5 = pullNames(df5)
     execDict5 = sentimentCalc(df5,execDict5,sentDict5)
     fullDict['04_23_2014'] = execDict5
 
-    with open('04_26_2016.txt',encoding='utf-8') as f6:
+    with open(r'.\transcripts\AAPL\04_26_2016.txt',encoding='utf-8') as f6:
         df6 = f6.read().splitlines()
     execDict6, sentDict6 = pullNames(df6)
     execDict6 = sentimentCalc(df6,execDict6,sentDict6)
     fullDict['04_26_2016'] = execDict6
 
-    with open('04_27_2015.txt',encoding='utf-8') as f7:
+    with open(r'.\transcripts\AAPL\04_27_2015.txt',encoding='utf-8') as f7:
         df7 = f7.read().splitlines()
     execDict7, sentDict7 = pullNames(df7)
     execDict7 = sentimentCalc(df7,execDict7,sentDict7)
     fullDict['04_27_2015'] = execDict7
 
-    with open('05_02_2017.txt',encoding='utf-8') as f8:
+    with open(r'.\transcripts\AAPL\05_02_2017.txt',encoding='utf-8') as f8:
         df8 = f8.read().splitlines()
     execDict8, sentDict8 = pullNames(df8)
     execDict8 = sentimentCalc(df8,execDict8,sentDict8)
     fullDict['05_02_2017'] = execDict8
 
-    with open('07_21_2015.txt',encoding='utf-8') as f9:
+    with open(r'.\transcripts\AAPL\07_21_2015.txt',encoding='utf-8') as f9:
         df9 = f9.read().splitlines()
     execDict9, sentDict9 = pullNames(df9)
     execDict9 = sentimentCalc(df9,execDict9,sentDict9)
     fullDict['07_21_2015'] = execDict9
 
-    with open('07_22_2014.txt',encoding='utf-8') as f10:
+    with open(r'.\transcripts\AAPL\07_22_2014.txt',encoding='utf-8') as f10:
         df10 = f10.read().splitlines()
     execDict10, sentDict10 = pullNames(df10)
     execDict10 = sentimentCalc(df10,execDict10,sentDict10)
     fullDict['07_22_2014'] = execDict10
 
-    with open('07_23_2013.txt',encoding='utf-8') as f11:
+    with open(r'.\transcripts\AAPL\07_23_2013.txt',encoding='utf-8') as f11:
         df11 = f11.read().splitlines()
     execDict11, sentDict11 = pullNames(df11)
     execDict11 = sentimentCalc(df11,execDict11,sentDict11)
     fullDict['07_23_2013'] = execDict11
 
-    with open('07_26_2016.txt',encoding='utf-8') as f12:
+    with open(r'.\transcripts\AAPL\07_26_2016.txt',encoding='utf-8') as f12:
         df12 = f12.read().splitlines()
     execDict12, sentDict12 = pullNames(df12)
     execDict12 = sentimentCalc(df12,execDict12,sentDict12)
     fullDict['07_26_2016'] = execDict12
 
-    with open('08_01_2017.txt',encoding='utf-8') as f13:
+    with open(r'.\transcripts\AAPL\08_01_2017.txt',encoding='utf-8') as f13:
         df13 = f13.read().splitlines()
     execDict13, sentDict13 = pullNames(df13)
     execDict13 = sentimentCalc(df13,execDict13,sentDict13)
     fullDict['08_01_2017'] = execDict13
 
-    with open('10_20_2014.txt',encoding='utf-8') as f14:
+    with open(r'.\transcripts\AAPL\10_20_2014.txt',encoding='utf-8') as f14:
         df14 = f14.read().splitlines()
     execDict14, sentDict14 = pullNames(df14)
     execDict14 = sentimentCalc(df14,execDict14,sentDict14)
     fullDict['10_20_2014'] = execDict14
 
-    with open('10_25_2016.txt',encoding='utf-8') as f15:
+    with open(r'.\transcripts\AAPL\10_25_2016.txt',encoding='utf-8') as f15:
         df15 = f15.read().splitlines()
     execDict15, sentDict15 = pullNames(df15)
     execDict15 = sentimentCalc(df15,execDict15,sentDict15)
     fullDict['10_25_2016'] = execDict15
 
-    with open('10_27_2015.txt',encoding='utf-8') as f16:
+    with open(r'.\transcripts\AAPL\10_27_2015.txt',encoding='utf-8') as f16:
         df16 = f16.read().splitlines()
     execDict16, sentDict16 = pullNames(df16)
     execDict16 = sentimentCalc(df16,execDict16,sentDict16)
     fullDict['10_27_2015'] = execDict16
 
-    with open('10_28_2013.txt',encoding='utf-8') as f17:
+    with open(r'.\transcripts\AAPL\10_28_2013.txt',encoding='utf-8') as f17:
         df17 = f17.read().splitlines()
     execDict17, sentDict17 = pullNames(df17)
     execDict17 = sentimentCalc(df17,execDict17,sentDict17)
     fullDict['10_28_2013'] = execDict17
 
-    with open('11_02_2017.txt',encoding='utf-8') as f18:
+    with open(r'.\transcripts\AAPL\11_02_2017.txt',encoding='utf-8') as f18:
         df18 = f18.read().splitlines()
     execDict18, sentDict18 = pullNames(df18)
     execDict18 = sentimentCalc(df18,execDict18,sentDict18)

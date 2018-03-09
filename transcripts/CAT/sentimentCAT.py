@@ -44,51 +44,53 @@ def sentimentCalc(lineList, executiveDict, sentimentDict):
         executiveDict[execs[i]] = snt['compound']
     return executiveDict
 
-with open('01_25_2018.txt',encoding='utf-8') as f:
-    df = f.read().splitlines() 
-print('01_25_2018')
-execDict, sentDict = pullNames(df)
-execDict = sentimentCalc(df,execDict,sentDict)
-print(execDict)
+def analyzeCAT():
+    
+    fullDict = {}
 
-with open('01_26_2017.txt',encoding='utf-8') as f1:
-    df1 = f1.read().splitlines()
-print('01_26_2017')
-execDict1, sentDict1 = pullNames(df1)
-execDict1 = sentimentCalc(df1,execDict1,sentDict1)
-print(execDict1)
+    with open(r'.\transcripts\CAT\01_25_2018.txt',encoding='utf-8') as f:
+        df = f.read().splitlines() 
+    execDict, sentDict = pullNames(df)
+    execDict = sentimentCalc(df,execDict,sentDict)
+    fullDict['01_25_2018'] = execDict
 
-with open('04_26_2017.txt',encoding='utf-8') as f2:
-    df2 = f2.read().splitlines()
-print('04_26_2017')
-execDict2, sentDict2 = pullNames(df2)
-execDict2 = sentimentCalc(df2,execDict2,sentDict2)
-print(execDict2)
+    with open(r'.\transcripts\CAT\01_26_2017.txt',encoding='utf-8') as f1:
+        df1 = f1.read().splitlines()
+    execDict1, sentDict1 = pullNames(df1)
+    execDict1 = sentimentCalc(df1,execDict1,sentDict1)
+    fullDict['01_26_2017'] = execDict1
 
-with open('09_13_2017.txt',encoding='utf-8') as f3:
-    df3 = f3.read().splitlines()
-print('09_13_2017')
-execDict3, sentDict3 = pullNames(df3)
-execDict3 = sentimentCalc(df3,execDict3,sentDict3)
-print(execDict3)
+    with open(r'.\transcripts\CAT\04_26_2017.txt',encoding='utf-8') as f2:
+        df2 = f2.read().splitlines()
+    execDict2, sentDict2 = pullNames(df2)
+    execDict2 = sentimentCalc(df2,execDict2,sentDict2)
+    fullDict['04_26_2017'] = execDict2
 
-with open('10_24_2017.txt',encoding='utf-8') as f4:
-    df4 = f4.read().splitlines()
-print('10_24_2017')
-execDict4, sentDict4 = pullNames(df4)
-execDict4 = sentimentCalc(df4,execDict4,sentDict4)
-print(execDict4)
+    with open(r'.\transcripts\CAT\09_13_2017.txt',encoding='utf-8') as f3:
+        df3 = f3.read().splitlines()
+    execDict3, sentDict3 = pullNames(df3)
+    execDict3 = sentimentCalc(df3,execDict3,sentDict3)
+    fullDict['09_13_2017'] = execDict3
 
-with open('11_15_2017.txt',encoding='utf-8') as f5:
-    df5 = f5.read().splitlines()
-print('11_15_2017')
-execDict5, sentDict5 = pullNames(df5)
-execDict5 = sentimentCalc(df5,execDict5,sentDict5)
-print(execDict5)
+    with open(r'.\transcripts\CAT\10_24_2017.txt',encoding='utf-8') as f4:
+        df4 = f4.read().splitlines()
+    execDict4, sentDict4 = pullNames(df4)
+    execDict4 = sentimentCalc(df4,execDict4,sentDict4)
+    fullDict['10_24_2017'] = execDict4
 
-with open('12_01_2016.txt',encoding='utf-8') as f6:
-    df6 = f6.read().splitlines()
-print('12_01_2016')
-execDict6, sentDict6 = pullNames(df6)
-execDict6 = sentimentCalc(df6,execDict6,sentDict6)
-print(execDict6)
+    with open(r'.\transcripts\CAT\11_15_2017.txt',encoding='utf-8') as f5:
+        df5 = f5.read().splitlines()
+    execDict5, sentDict5 = pullNames(df5)
+    execDict5 = sentimentCalc(df5,execDict5,sentDict5)
+    fullDict['11_15_2017'] = execDict5
+
+    with open(r'.\transcripts\CAT\12_01_2016.txt',encoding='utf-8') as f6:
+        df6 = f6.read().splitlines()
+    execDict6, sentDict6 = pullNames(df6)
+    execDict6 = sentimentCalc(df6,execDict6,sentDict6)
+    fullDict['12_01_2016'] = execDict6
+    
+    return fullDict
+
+CAT = analyzeCAT()
+print(CAT)
