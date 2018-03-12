@@ -5,11 +5,13 @@ from transcripts.CAT import sentimentCAT
 from transcripts.GOOG import sentimentGOOG
 from transcripts.KO import sentimentKO
 from transcripts.PEP import sentimentPEP
+from pprint import pprint
+import pickle
 
 
 def sentiment():
     sentDict = {}
-    
+
     sentDict["AAPL"] = sentimentAAPL.analyzeAAPL()
     sentDict["BA"] = sentimentBA.analyzeBA()
     sentDict["BUD"] = sentimentBUD.analyzeBUD()
@@ -17,7 +19,8 @@ def sentiment():
     sentDict["GOOG"] = sentimentGOOG.analyzeGOOG()
     sentDict["KO"] = sentimentKO.analyzeKO()
     sentDict["PEP"] = sentimentPEP.analyzePEP()
-    
+
     return sentDict
 
-print(sentiment())
+sentimentDict = sentiment()
+pickle.dump(sentimentDict, open('sentimentDict.p', 'wb'))

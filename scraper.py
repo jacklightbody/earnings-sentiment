@@ -30,7 +30,7 @@ def get_stock_calls(stock, min_year):
         response = json.loads(page_html)
         if len(response['html']) < 2:
             done = True
-        html = html + response['html'] 
+        html = html + response['html']
         page += 1
     html += '</html>'
 
@@ -54,9 +54,9 @@ def get_stock_calls(stock, min_year):
                 try:
                     #First possible format- Sep. 7, 2017
                     datetime_object = datetime.datetime.strptime(date, '%b. %d, %Y')
-                    
+
                 except:
-                    try: 
+                    try:
                         # for short month names SA doesn't always abbreviate ex May 4 2017
                         datetime_object = datetime.datetime.strptime(date, '%b %d, %Y')
                     except:
@@ -68,18 +68,18 @@ def get_stock_calls(stock, min_year):
 
                 if year <= min_year:
                     return
-                driver.get(transcript_url)        
+                driver.get(transcript_url)
                 el = driver.find_element_by_xpath("//*")
                 page_html = el.get_attribute("outerHTML")
                 content = ''
                 try:
                     content = extract_transcript(page_html)
-                
+
                 except Exception as e:
                     print("Transcript Parsing Error")
                     # give us time to manually do the captcha and then try again
                     time.sleep(20)
-                    try: 
+                    try:
                         content = extract_transcript(page_html)
                     except:
                         # if it fails twice then just skip it, probably mal-formed for some reason
@@ -96,7 +96,7 @@ def get_stock_calls(stock, min_year):
             print("Link Following Error")
             print(e)
             continue
-                    
+
 def extract_transcript(page_html):
     transcript_soup = BeautifulSoup(page_html, "html.parser")
     text = transcript_soup.find(id="a-cont").text
@@ -105,7 +105,7 @@ def extract_transcript(page_html):
 
 if __name__ == "__main__":
     stocks=['CA']#, 'BA', 'CAT', 'KO', 'BUD', 'PEP']
-    min_year = 2012 
+    min_year = 2012
 
 
     for stock in stocks:

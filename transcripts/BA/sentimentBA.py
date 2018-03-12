@@ -45,33 +45,33 @@ def sentimentCalc(lineList, executiveDict, sentimentDict):
     return executiveDict
 
 def analyzeBA():
-    
+
     fullDict = {}
 
-    with open(r'.\transcripts\BA\01_31_2018.txt',encoding='utf-8') as f:
-        df = f.read().splitlines() 
+    with open(r'transcripts/BA/01_31_2018.txt', encoding='utf-8') as f:
+        df = f.read().splitlines()
     execDict, sentDict = pullNames(df)
     execDict = sentimentCalc(df,execDict,sentDict)
     fullDict['01_31_2018'] = execDict
 
-    with open(r'.\transcripts\BA\04_26_2017.txt',encoding='utf-8') as f1:
+    with open(r'transcripts/BA/04_26_2017.txt',encoding='utf-8') as f1:
         df1 = f1.read().splitlines()
     execDict1, sentDict1 = pullNames(df1)
     execDict1 = sentimentCalc(df1,execDict1,sentDict1)
     fullDict['04_26_2017'] = execDict1
-    
-    with open(r'.\transcripts\BA\09_13_2017.txt',encoding='utf-8') as f2:
+
+    with open(r'transcripts/BA/09_13_2017.txt',encoding='utf-8') as f2:
         df2 = f2.read().splitlines()
     execDict2, sentDict2 = pullNames(df2)
     execDict2 = sentimentCalc(df2,execDict2,sentDict2)
     fullDict['09_13_2017'] = execDict2
 
-    with open(r'.\transcripts\BA\10_25_2017.txt',encoding='utf-8') as f3:
+    with open(r'transcripts/BA/10_25_2017.txt',encoding='utf-8') as f3:
         df3 = f3.read().splitlines()
     execDict3, sentDict3 = pullNames(df3)
     execDict3 = sentimentCalc(df3,execDict3,sentDict3)
     fullDict['10_25_2017'] = execDict3
-    
+
     return fullDict
 
-BA = analyzeBA()            
+BA = analyzeBA()
